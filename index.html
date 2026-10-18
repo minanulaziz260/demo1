@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Serenity Blossom – Elegant Digital Wedding Invitation</title>
+  <meta name="description" content="Discover Serenity Blossom, a soft floral digital wedding invitation website. Elegant, modern, and easy to customize.">
+  <meta name="keywords" content="digital wedding invitation website, wedding invitation, Serenity Blossom">
+  <meta property="og:title" content="Serenity Blossom – Elegant Digital Wedding Invitation">
+  <meta property="og:description" content="Discover Serenity Blossom, a soft floral digital wedding invitation website.">
+  <meta property="og:image" content="assets/images/meta_image.webp">
+  <link rel="icon" type="image/png" href="assets/images/meta_image.webp">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Monsieur+La+Doulaise&display=swap" rel="stylesheet">
+
+  <!-- Vitopia Theme Stylesheets -->
+  <link rel="stylesheet" href="assets/css/app.css">
+  <link rel="stylesheet" href="assets/css/resolver.css">
+
+  <style>
+    :root {
+      --header-font: 'Bodoni Moda', serif;
+      --body-font: 'Merriweather', serif;
+      --accent-font: 'Monsieur La Doulaise', cursive;
+      
+      --header-color: #aa874b;
+      --body-color: #000000;
+      --accent-color: #ffffff;
+      --background-color: #69888b;
+      
+      --button-bg: #d4b173;
+      --button-color: #ffffff;
+      --button-hover-bg: #b19059;
+      --button-hover-color: #ffffff;
+      
+      --link-color: #d4b173;
+      --link-hover-color: #b19059;
+      
+      --border-color: #d4b173;
+      --shadow-color: rgba(0, 0, 0, 0.1);
+      
+      --content-padding: 2rem;
+      --section-spacing: 4rem;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--body-font);
+      background-color: var(--background-color);
+      color: var(--body-color);
+      overflow-x: hidden;
+      margin: 0;
+      padding: 0;
+    }
+
+    .font-header {
+      font-family: var(--header-font) !important;
+    }
+    .font-body {
+      font-family: var(--body-font) !important;
+    }
+    .font-accent {
+      font-family: var(--accent-font) !important;
+    }
+    .text-header {
+      color: var(--header-color);
+    }
+    .text-body {
+      color: var(--body-color);
+    }
+    .text-accent {
+      color: var(--accent-color);
+    }
+
+    /* Spinning vinyl animation */
+    @keyframes spin-vinyl {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    .playing .vinyl {
+      animation: spin-vinyl 3s linear infinite !important;
+    }
+    .paused .vinyl {
+      animation-play-state: paused !important;
+    }
+
+    /* Wave animation */
+    @keyframes wave {
+      0% { transform: rotate(calc(var(--wave-angle, 3deg) * -1)); }
+      100% { transform: rotate(var(--wave-angle, 3deg)); }
+    }
+    .wave {
+      animation-name: wave;
+      animation-timing-function: ease-in-out;
+      animation-iteration-count: infinite;
+      animation-direction: alternate;
+      --wave-angle: 6deg;
+      --wave-speed: 6s;
+      animation-duration: var(--wave-speed);
+    }
+
+    /* Button styles */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      white-space: nowrap;
+      border-radius: 9999px;
+      font-size: 0.875rem;
+      font-weight: 500;
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+    .btn-primary {
+      background-color: var(--button-bg);
+      color: var(--button-color);
+    }
+    .btn-primary:hover {
+      background-color: var(--button-hover-bg);
+      color: var(--button-hover-color);
+      transform: translateY(-1px);
+    }
+
+    /* Slideshow transitions */
+    .slideshow {
+      position: relative;
+      overflow: hidden;
+    }
+    .slideshow img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      opacity: 0;
+      transition: opacity 0.8s ease-in-out;
+    }
+    .slideshow img.active {
+      opacity: 1;
+      z-index: 2;
+    }
+    .slideshow img.previous {
+      opacity: 1;
+      z-index: 1;
+    }
+  </style>
+</head>
+<body class="antialiased selection:bg-[#d4b173] selection:text-white">
+
+  <!-- ==================== FLOATING NAVIGATION MENU ==================== -->
+  <div class="fixed top-4 right-4 z-40">
+    <div class="relative">
+      <button id="menu-btn" type="button" aria-label="Toggle navigation menu"
+        class="inline-flex items-center gap-2 rounded-full border border-neutral-300 bg-white/90 backdrop-blur-md px-4 py-2 text-sm font-semibold text-neutral-800 shadow-md hover:bg-neutral-100 transition-all cursor-pointer">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="4" x2="20" y1="12" y2="12"></line>
+          <line x1="4" x2="20" y1="6" y2="6"></line>
+          <line x1="4" x2="20" y1="18" y2="18"></line>
+        </svg>
+        <span>Menu</span>
+      </button>
+
+      <div id="menu-dropdown" class="hidden absolute right-0 mt-2 w-52 rounded-2xl border border-neutral-200 bg-white/95 backdrop-blur-lg p-2 shadow-2xl z-50">
+        <div class="space-y-1">
+          
+      <a href="#page-0" class="block px-3.5 py-2 text-sm font-medium text-neutral-800 hover:bg-neutral-100 rounded-lg transition-colors menu-link">
+        Opening
+      </a>
+    
+      <a href="#page-1" class="block px-3.5 py-2 text-sm font-medium text-neutral-800 hover:bg-neutral-100 rounded-lg transition-colors menu-link">
+        Quotes
+      </a>
+    
+      <a href="#page-2" class="block px-3.5 py-2 text-sm font-medium text-neutral-800 hover:bg-neutral-100 rounded-lg transition-colors menu-link">
+        Couple
+      </a>
+    
+      <a href="#page-3" class="block px-3.5 py-2 text-sm font-medium text-neutral-800 hover:bg-neutral-100 rounded-lg transition-colors menu-link">
+        Slideshow
+      </a>
+    
+      <a href="#page-4" class="block px-3.5 py-2 text-sm font-medium text-neutral-800 hover:bg-neutral-100 rounded-lg transition-colors menu-link">
+        Event
+      </a>
+    
+      <a href="#page-5" class="block px-3.5 py-2 text-sm font-medium text-neutral-800 hover:bg-neutral-100 rounded-lg transition-colors menu-link">
+        Gift
+      </a>
+    
+      <a href="#page-6" class="block px-3.5 py-2 text-sm font-medium text-neutral-800 hover:bg-neutral-100 rounded-lg transition-colors menu-link">
+        Gallery
+      </a>
+    
+      <a href="#page-7" class="block px-3.5 py-2 text-sm font-medium text-neutral-800 hover:bg-neutral-100 rounded-lg transition-colors menu-link">
+        Love Story
+      </a>
+    
+      <a href="#page-8" class="block px-3.5 py-2 text-sm font-medium text-neutral-800 hover:bg-neutral-100 rounded-lg transition-colors menu-link">
+        RSVP
+      </a>
+    
+      <a href="#page-9" class="block px-3.5 py-2 text-sm font-medium text-neutral-800 hover:bg-neutral-100 rounded-lg transition-colors menu-link">
+        Comment
+      </a>
+    
+      <a href="#page-10" class="block px-3.5 py-2 text-sm font-medium text-neutral-800 hover:bg-neutral-100 rounded-lg transition-colors menu-link">
+        Thanks
+      </a>
+    
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== FIXED LEFT COVER (SPLIT PAGE LAYOUT) ==================== -->
+  <div id="cover-container" class="fixed inset-0 h-full lg:flex text-[var(--body-color)] transition-all duration-200 ease-in-out z-10 lg:z-0 pointer-events-auto">
+    <div class="relative h-full grow overflow-hidden">
+      <div class="size-full relative" style="background-color:var(--background-color);">
+<div class="size-full" data-component="image" data-animation="none" id="uid-b02b88f1">
+<img src="assets/images/tZLQJro30lAOtEEyEHUUqmCDK2T7IGDfCcDMsODq.jpg" class="size-full object-cover object-center" alt="YVqFtGeyuPANTnFICZg3l9mes0sJ8c2n7IO5FVVC.jpg">
+  <div class="absolute" style="background:radial-gradient(circle, var(--background-color) 20%, rgba(0, 0, 0, 0) 50%);top:0%;bottom:-110%;left:-100%;right:-100%;">
+  </div>
+</div>
+<div data-animation="hideOnScroll" class="absolute w-full flex flex-col justify-start sm:pb-20 px-6 text-center" style="bottom:50px;">
+
+<div data-component="text" class="text-4xl md:text-4xl w-full mb-4 font-accent text-accent" data-animation="fadeIn" id="uid-39177487">Wedding Invitation</div>
+    <div data-component="text" class="mb-8 text-4xl md:text-6xl w-full font-header text-accent" data-animation="fadeIn" id="uid-19e6ba04">ISHAK &amp; SALMA</div>
+
+<div class="rounded-lg p-3 w-full max-w-80 mx-auto" style="background-color:var(--accent-color);color:var(--body-color);">
+ <div data-component="text" data-animation="fadeIn" id="uid-a62ce510">Kepada Yth.</div>
+<div data-component="recipient" class="font-bold" data-animation="fadeIn" id="uid-2771f8af">Tamu Undangan</div>
+<div data-component="text" data-animation="fadeIn" id="uid-4d8d0d5f">Di Tempat</div>
+</div>
+
+<div data-animation="zoomIn" id="uid-46f8b2cc" class="mt-4 pb-10 max-w-sm mx-auto">
+<a href="#page-0" class="play-music btn btn-primary inline-flex h-10 px-6 lg:hidden rounded-full" rel="noreferrer noopener" id="uid-c114409c">Open Invitation</a>
+</div>
+
+</div>
+</div>
+
+    </div>
+    <!-- Right spacer to maintain split layout on large screens -->
+    <div class="h-full w-full max-w-full flex-none lg:max-w-xl hidden lg:block"></div>
+  </div>
+
+  <!-- ==================== RIGHT SCROLLING CONTENT ==================== -->
+  <div id="section-render" class="lg:ml-auto lg:mt-0 lg:max-w-xl rtl:lg:ml-0 rtl:lg:mr-auto relative mt-[100dvh] w-full max-w-full bg-[var(--background-color)] text-[var(--body-color)] shadow-2xl z-20">
+    
+    <div id="page-0" class="w-full">
+      <div class="relative overflow-hidden">
+        <div class="h-dvh relative" style='background-image:url("assets/images/1O0bLbE65AxCAi7eKhfXiRno24MJfTMcsNQZIhua.jpg");background-size:cover;'>
+  
+<div class="size-full" data-component="video" data-animation="none" id="uid-b5aff462">
+<video class="w-full h-full object-cover" poster="assets/images/2JWNdiiIzEgDt80ReIN7QlIi3wMGqT3NLs2DObrY.jpg" autoplay="" muted="" playsinline="">
+  <source src="assets/videos/CUV7SJ4iVhWpoyam35wg5EyKUgwOIOJo1CMBbkUk.mp4" type="video/mp4">
+Your browser does not support the video tag.
+</source></video>
+</div>
+    
+  <div class="absolute inset-0 size-full flex flex-col justify-center p-6">
+        <div class="text-center text-header">
+            <div data-component="text" class="mb-4" data-animation="fadeInDown" data-animation-delay="10000" id="uid-8740be1c">The Wedding Of</div>
+            <div data-component="text" class="font-header text-5xl font-medium" data-animation="fadeInLeft" data-animation-delay="10000" id="uid-604b99f3">ISHAK</div>
+            <div data-component="text" class="text-2xl" data-animation="fadeIn" data-animation-delay="10000" id="uid-cca7f92c">&amp;</div>
+            <div data-component="text" class="font-header text-5xl font-medium" data-animation="fadeInRight" data-animation-delay="10000" id="uid-c687aa6b">SALMA</div>
+            <div data-component="text" class="mt-4" data-animation="fadeInUp" data-animation-delay="10000" id="uid-d5016fec">11 - 12 - 93</div>
+        </div>
+    </div>
+  
+</div>
+      </div>
+    </div>
+    
+    <div id="page-1" class="w-full">
+      <div class="relative overflow-hidden">
+        <section id="uid-204c24ad" class="px-4 py-20">
+
+<div class="rounded-2xl shadow-lg overflow-hidden relative w-full max-w-xl mx-auto">
+
+  <div class="absolute inset-0">
+    <div class="size-full" data-component="image" data-animation="none" id="uid-50c7d858">
+<img src="assets/images/1O0bLbE65AxCAi7eKhfXiRno24MJfTMcsNQZIhua.jpg" class="size-full object-cover object-center" alt="YVqFtGeyuPANTnFICZg3l9mes0sJ8c2n7IO5FVVC.jpg">
+</div>
+  </div>
+
+  <div class="space-y-8 relative" style="background-color:rgba(255,255,255,0.8);">
+    <div id="uid-db3caf72" class="w-full max-w-xl mx-auto overflow-hidden rounded-2xl" data-component="image" style="height:350px;" data-animation="fadeInDown">
+      <img src="assets/images/MZaxQ1Ez1aKj3vdIpwFnV9T5bK77KrmlUl2LF05s.jpg" alt="Foto 1" class="w-full h-full object-cover">
+    </div>
+
+<div class="text-center max-w-xl mx-auto px-6 pt-4">
+      <h2 id="uid-3bf9c215" data-component="text" class="font-accent text-header text-4xl md:text-6xl font-medium" data-animation="fadeInUp" style="margin-top:0;">Ishak &amp; Salma</h2>
+</div>
+
+<div class="max-w-xl mx-auto px-6 pb-14 text-center">
+      <p data-component="description" class="text-base mb-3" data-animation="fadeInUp" id="uid-afb7cd88">"Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar kamu cenderung dan merasa tenteram kepadanya, dan Dia menjadikan di antaramu rasa kasih dan sayang. Sungguh, pada yang demikian itu benar-benar terdapat tanda-tanda (kebesaran Allah) bagi kaum yang berpikir."</p>
+      <p data-component="description" class="text-base" data-animation="fadeInUp" id="uid-e34d821a"> (Ar-Rum: 21)</p>
+</div>
+  </div>
+  
+
+</div>
+
+</section>
+
+      </div>
+    </div>
+    
+    <div id="page-2" class="w-full">
+      <div class="relative overflow-hidden">
+        <section class="w-full px-4 py-6">
+
+<div class="absolute inset-0">
+  <div class="size-full" data-component="image" data-animation="none" id="uid-a5edb5e2">
+<img src="assets/images/1O0bLbE65AxCAi7eKhfXiRno24MJfTMcsNQZIhua.jpg" class="size-full object-cover object-center" alt="YVqFtGeyuPANTnFICZg3l9mes0sJ8c2n7IO5FVVC.jpg">
+</div>
+</div>
+  
+<div class="relative py-20 px-4 w-full" style="background-color:rgba(255,255,255,0.8);border:2px solid var(--border-color);border-radius:15rem;">
+
+<div class="h-40 w-40 mx-auto mb-14" data-component="image" data-animation="zoomIn" id="uid-52a9e87b">
+<img src="assets/images/sLjztB6Latgr71RKUi33DV7JfGGhnjKRg5BeuLPi.png" class="size-full object-cover object-center" alt="YVqFtGeyuPANTnFICZg3l9mes0sJ8c2n7IO5FVVC.jpg">
+</div>
+  
+  <div class="w-full flex flex-wrap lg:px-4 text-center space-y-8">
+      <div class="w-full">
+        <h2 id="uid-9e4d413a" data-component="text" class="font-accent text-3xl md:text-5xl font-medium" data-animation="fadeInUp">We Are
+Getting Married!</h2>
+        <p data-component="description" class="text-base mt-2" data-animation="fadeInUp" data-animation-duration="2" id="uid-f8640928">    With the grace and blessing of Allah Subhanahu Wa Ta’ala, we would like to invite you to our Wedding Reception.
+</p>
+      </div>
+
+    <div class="space-y-6 flex flex-wrap items-center justify-center w-full">
+      
+  <div class="grid gap-6 w-full max-w-md">
+
+      <div class="relative mx-auto w-40 md:w-64 h-48 md:h-80">
+
+    <div class="absolute" style="top:0;left:-50%;">
+      <div class="h-48 w-48 md:h-80 md:w-80 wave" style="transform-origin:bottom right;--wave-speed:5s;--wave-angle:-4deg;">
+<img src="assets/images/KW0t2poTVFtCY7vYbDeNXMpZRKoHbhc4x5XnLltz.png" class="size-full object-contain" alt="YVqFtGeyuPANTnFICZg3l9mes0sJ8c2n7IO5FVVC.jpg">
+</div>
+    </div>        
+        
+        <div id="uid-ac1a3f3c" data-component="image" class="mx-auto w-40 md:w-64 overflow-hidden h-48 md:h-80 rounded-full shadow-xl" data-animation="fadeInRight" style="border:2px solid var(--border-color);"><img src="assets/images/nKrxRL0pXJCaSACSBQ9IaSCr8ALdLESV7bTokJuy.png" class="h-full w-full object-cover object-center" alt="3jPngeBChSREnsqmYDMCXkzWXEC64V7EUltNY8aB.jpg"></div>
+
+        <div class="absolute" style="bottom:-0%;right:-20%;">
+      <div class="h-32 w-32 md:h-40 md:w-40 wave" style="transform-origin:bottom left;--wave-speed:5s;--wave-angle:-4deg;animation-delay:500ms;">
+<img src="assets/images/LitjiDYqRcwQUotvsZXYDernmdqZcQVpbPp4xfID.png" class="size-full object-contain" alt="YVqFtGeyuPANTnFICZg3l9mes0sJ8c2n7IO5FVVC.jpg">
+</div>
+    </div>
+        
+      </div>
+
+      <div class="w-full max-w-md mx-auto">
+        <div data-component="text" class="text-4xl sm:text-5xl font-accent mb-2" data-animation="zoomIn" id="uid-d52e9f69">Ishak</div>
+              <h3 data-component="text" class="text-xl sm:text-3xl font-header mb-2" data-animation="zoomIn" id="uid-f0b51a2c">Ishak Rifky Syahrul</h3>
+              <p data-component="description" class="text-base" data-animation="fadeInUp" id="uid-f7ae4132">Anak pertama dari 5 bersaudara
+Bapak Ir. H. Ibrahim Buka, ST.,MT
+&amp; Ibu Hj. Mariani, SE</p>
+        <div data-component="link" data-animation="zoomIn" class="mt-4" id="uid-bdee1ef0">
+          <a href="https://instagram.com" target="_blank" class="btn btn-primary h-8 px-6 rounded-full" rel="noreferrer noopener">Instagram</a>
+        </div>
+            </div>
+  </div>
+
+<p data-component="text" class="text-6xl sm:text-7xl font-header text-header w-20 py-6" data-animation="zoomIn" id="uid-89c04007">&amp;</p>
+
+  <div class="grid gap-6 w-full max-w-md">
+
+    <div class="relative mx-auto w-40 md:w-64 h-48 md:h-80">
+
+    <div class="absolute" style="top:0;right:-50%;">
+      <div class="h-48 w-48 md:h-80 md:w-80 wave" style="transform-origin:bottom left;--wave-speed:5s;--wave-angle:-4deg;">
+<img src="assets/images/EoWCTgKNDjWNv0EU91XTksX3nCcNaDMKDvy3ULaS.png" class="size-full object-contain" alt="YVqFtGeyuPANTnFICZg3l9mes0sJ8c2n7IO5FVVC.jpg">
+</div>
+    </div>        
+        
+        <div id="uid-37ed3476" data-component="image" class="mx-auto w-40 md:w-64 overflow-hidden h-48 md:h-80 rounded-full shadow-xl" data-animation="fadeInLeft" style="border:2px solid var(--border-color);"><img src="assets/images/LLWEff551UeAFLOzAcO1y8byKu7es3G65ySmJnaE.jpg" class="h-full w-full object-cover object-center" alt="3jPngeBChSREnsqmYDMCXkzWXEC64V7EUltNY8aB.jpg"></div>
+
+        <div class="absolute" style="bottom:-0%;left:-20%;">
+      <div class="h-32 w-32 md:h-40 md:w-40 wave" style="transform-origin:bottom right;--wave-speed:5s;--wave-angle:-4deg;animation-delay:500ms;">
+<img src="assets/images/ZIkSbuOcGdgcgnZXic9FPvCJVVjLiH00M2r0lJSx.png" class="size-full object-contain" alt="YVqFtGeyuPANTnFICZg3l9mes0sJ8c2n7IO5FVVC.jpg">
+</div>
+    </div>
+        
+      </div>
+
+
+      <div class="w-full max-w-md mx-auto pb-10">
+        <div data-component="text" class="text-4xl sm:text-5xl font-accent mb-2" data-animation="zoomIn" id="uid-d3f7bf0f">Salma</div>
+              <h3 data-component="text" class="text-xl sm:text-3xl font-header mb-2" data-animation="zoomIn" id="uid-7413feb7">Salma Eva Nurningsih</h3>
+        <p data-component="description" class="text-base" data-animation="fadeInUp" id="uid-830a5b87">Anak kedua dari 4 bersaudara
+Bapak Idris Zulkarnain
+&amp; Ibu Sidar</p>
+        <div data-component="link" data-animation="zoomIn" class="mt-4" id="uid-cec6e3aa">
+          <a href="https://instagram.com" target="_blank" class="btn btn-primary h-8 px-6 rounded-full" rel="noreferrer noopener">Instagram</a>
+        </div>
+      </div>
+
+  </div>
+
+  
+  </div>
+</div>
+</div>
+
+</section>
+
+      </div>
+    </div>
+    
+    <div id="page-3" class="w-full">
+      <div class="relative overflow-hidden">
+        <section class="relative py-20" style="height:100vh;">
+    <div class="absolute" style="inset:0;">
+        <div id="uid-32022bec" data-component="slideshow" class="slideshow h-full w-full" data-animation="undefined"><img src="assets/images/S2OE4UsXVYduhSoV0Ok09Fz72wuPS8CwqAjtmGKE.jpg" class="active" alt="S2OE4UsXVYduhSoV0Ok09Fz72wuPS8CwqAjtmGKE.jpg"><img src="assets/images/Hp7FfyQ46he29loNtaYbgo9FuBn1MFoq7eS07k5R.jpg" alt="Hp7FfyQ46he29loNtaYbgo9FuBn1MFoq7eS07k5R.jpg"><img src="assets/images/6IoUdfdwPettAOJwVs66fSRp2MSVXUsr9qwRLOQC.jpg" alt="6IoUdfdwPettAOJwVs66fSRp2MSVXUsr9qwRLOQC.jpg"><img src="assets/images/zywT5TNSILCHQw619hgR8JOpM0O1ePNHI1G1l5GZ.jpg" alt="zywT5TNSILCHQw619hgR8JOpM0O1ePNHI1G1l5GZ.jpg"></div>
+    </div>
+  </section>
+
+      </div>
+    </div>
+    
+    <div id="page-4" class="w-full">
+      <div class="relative overflow-hidden">
+        <section id="uid-c1e9561e" class="relative px-4 py-20 sm:px-6">
+    <div class="relative h-full w-full mx-auto text-center space-y-8">
+
+      <div class="h-40 w-40 mx-auto mb-14" data-component="image" data-animation="zoomIn" id="uid-15321485">
+<img src="assets/images/sLjztB6Latgr71RKUi33DV7JfGGhnjKRg5BeuLPi.png" class="size-full object-cover object-center" alt="YVqFtGeyuPANTnFICZg3l9mes0sJ8c2n7IO5FVVC.jpg">
+</div>
+
+      
+      
+    <div class="max-w-xl mx-auto">
+      <h2 id="uid-91279b1e" data-component="text" class="font-accent text-accent text-4xl md:text-5xl mb-2" data-animation="fadeInUp">Save The Date</h2>
+    </div>
+
+      <div data-component="countdown" data-datetime="2026-04-21T10:00" class="grid grid-cols-4 gap-2 w-full max-w-xl mx-auto" id="uid-96b9335c" data-animation="none">
+  <div class="flex flex-col items-center text-center p-2 rounded-xl" style="background-color:var(--accent-color);color:var(--background-color);">
+    <div class="days text-3xl">00</div>
+    <div class="text-sm">Days</div>
+  </div>
+  <div class="flex flex-col items-center text-center p-2 rounded-xl" style="background-color:var(--accent-color);color:var(--background-color);">
+      <div class="hours text-3xl">00</div>
+      <div class="text-sm">Hours</div>
+  </div>
+  <div class="flex flex-col items-center text-center p-2 rounded-xl" style="background-color:var(--accent-color);color:var(--background-color);">
+      <div class="minutes text-3xl">00</div>
+      <div class="text-sm">Minutes</div>
+  </div>
+  <div class="flex flex-col items-center text-center p-2 rounded-xl" style="background-color:var(--accent-color);color:var(--background-color);">
+      <div class="seconds text-3xl">00</div>
+      <div class="text-sm">Seconds</div>
+  </div>
+</div>
+
+      <div class="w-full max-w-xl mx-auto">
+        <p data-component="description" class="text-base mt-2 text-accent" data-animation="fadeInUp" data-animation-duration="2" id="uid-5e34dde1">    With the grace and blessing of Allah SWT, we invite you to attend our wedding ceremony:
+</p>
+      </div>
+
+    <div class="mx-auto w-full flex flex-wrap justify-center gap-8">
+      
+      <div class="w-full max-w-md relative p-4 rounded-full overflow-hidden">
+
+        <div class="absolute inset-0">
+    <div class="size-full" data-component="image" data-animation="none" id="uid-3d91705e">
+<img src="assets/images/1O0bLbE65AxCAi7eKhfXiRno24MJfTMcsNQZIhua.jpg" class="size-full object-cover object-center" alt="YVqFtGeyuPANTnFICZg3l9mes0sJ8c2n7IO5FVVC.jpg">
+</div>
+  </div>
+        
+        <div class="px-4 py-20 relative rounded-full overflow-hidden" style="background-color:rgba(255,255,255,0.8);border:2px solid var(--border-color);">
+          <div data-component="image" class="h-32 w-full mx-auto" data-animation="none" id="uid-0faf3339"><img src="assets/images/qrgpCDJSjhvr3RRMpcNXoUFEQH2zh78DZEtfOH4q.webp" class="size-full object-contain" alt="xUXSnhxAED90iuoRHD5lgTlNEP7RHesGcqoB7YQr.webp"></div>
+        <h3 data-component="text" class="text-3xl sm:text-5xl font-accent mb-2" data-animation="zoomIn" id="uid-fea35458">Ceremonial</h3><p data-component="description" class="text-base font-bold text-lg sm:text-xl" data-animation="fadeInUp" id="uid-43a9ce9f">MINGGU
+31 DESEMBER 2025</p>
+        <p data-component="text" class="text-base" data-animation="fadeInUp" id="uid-179912b0">08.00 - 10.00</p>
+
+<div class="w-8 py-4 mx-auto text-header [&amp;_svg]:size-6 [&amp;_svg]:shrink-0">
+  <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" fill="currentColor">
+  <path fill-rule="evenodd" d="m11.54 22.351.07.04.028.016a.76.76 0 0 0 .723 0l.028-.015.071-.041a16.975 16.975 0 0 0 1.144-.742 19.58 19.58 0 0 0 2.683-2.282c1.944-1.99 3.963-4.98 3.963-8.827a8.25 8.25 0 0 0-16.5 0c0 3.846 2.02 6.837 3.963 8.827a19.58 19.58 0 0 0 2.682 2.282 16.975 16.975 0 0 0 1.145.742ZM12 13.5a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" clip-rule="evenodd"></path>
+</svg>
+
+</div>
+          
+<p data-component="text" class="text-base font-bold" data-animation="fadeInUp" id="uid-0f549f67">West Ballroom</p>        
+<p data-component="text" class="text-base" data-animation="fadeInUp" id="uid-cd100501">UpperHills Convention Hall</p>
+        <div data-component="link" data-animation="zoomIn" class="mt-4" id="uid-6a907869">
+          <a href="https://g.co/kgs/kR4J2NV" target="_blank" class="btn btn-primary h-8 px-6 rounded-full" rel="noreferrer noopener">Open Maps</a>
+        </div>
+        </div>
+      </div>
+      
+      <div class="w-full max-w-md relative p-4 rounded-full overflow-hidden">
+
+        <div class="absolute inset-0">
+    <div class="size-full" data-component="image" data-animation="none" id="uid-20a6c661">
+<img src="assets/images/1O0bLbE65AxCAi7eKhfXiRno24MJfTMcsNQZIhua.jpg" class="size-full object-cover object-center" alt="YVqFtGeyuPANTnFICZg3l9mes0sJ8c2n7IO5FVVC.jpg">
+</div>
+  </div>
+        
+        <div class="px-4 py-20 relative rounded-full overflow-hidden" style="background-color:rgba(255,255,255,0.8);border:2px solid var(--border-color);">
+          <div data-component="image" class="h-32 w-full mx-auto" data-animation="none" id="uid-521682a1"><img src="assets/images/uqTLtymSevCtpGdkx5UikLpBnsJCeznwVJ2c4UMv.webp" class="size-full object-contain" alt="xUXSnhxAED90iuoRHD5lgTlNEP7RHesGcqoB7YQr.webp"></div>
+        <h3 data-component="text" class="text-3xl sm:text-5xl font-accent mb-2" data-animation="zoomIn" id="uid-56821985">Reception</h3>
+<p data-component="description" class="text-base font-bold text-lg sm:text-xl" data-animation="fadeInUp" id="uid-d9ae391c">MINGGU
+31 DESEMBER 2025</p>
+        <p data-component="text" class="text-base" data-animation="fadeInUp" id="uid-449eb1f1">08.00 - 10.00</p>
+
+<div class="w-8 py-4 mx-auto text-header [&amp;_svg]:size-6 [&amp;_svg]:shrink-0">
+  <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" fill="currentColor">
+  <path fill-rule="evenodd" d="m11.54 22.351.07.04.028.016a.76.76 0 0 0 .723 0l.028-.015.071-.041a16.975 16.975 0 0 0 1.144-.742 19.58 19.58 0 0 0 2.683-2.282c1.944-1.99 3.963-4.98 3.963-8.827a8.25 8.25 0 0 0-16.5 0c0 3.846 2.02 6.837 3.963 8.827a19.58 19.58 0 0 0 2.682 2.282 16.975 16.975 0 0 0 1.145.742ZM12 13.5a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" clip-rule="evenodd"></path>
+</svg>
+
+</div>
+          
+<p data-component="text" class="text-base font-bold" data-animation="fadeInUp" id="uid-ff7dfc55">West Ballroom</p>
+<p data-component="text" class="text-base" data-animation="fadeInUp" id="uid-1fdff745">UpperHills Convention Hall</p>
+        <div data-component="link" data-animation="zoomIn" class="mt-4" id="uid-76f2fd59">
+          <a href="https://g.co/kgs/kR4J2NV" target="_blank" class="btn btn-primary h-8 px-6 rounded-full" rel="noreferrer noopener">Open Maps</a>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+      </div>
+    </div>
+    
+    <div id="page-5" class="w-full">
+      <div class="relative overflow-hidden">
+        <section class="px-4 text-center space-y-8 lg:flex items-center">
+
+  <div class="absolute inset-0">
+    <div class="size-full" data-component="image" data-animation="none" id="uid-fc1eccf7">
+<img src="assets/images/1O0bLbE65AxCAi7eKhfXiRno24MJfTMcsNQZIhua.jpg" class="size-full object-cover object-center" alt="YVqFtGeyuPANTnFICZg3l9mes0sJ8c2n7IO5FVVC.jpg">
+</div>
+  
+</div>
+
+<div class="relative size-full lg:px-6 py-20">
+  <div class="relative px-4 py-20 rounded-2xl max-w-xl mx-auto shadow-lg" style="background-color:rgba(255,255,255,0.8);border:4px solid var(--border-color);">
+      <h2 id="uid-fd19750d" data-component="text" class="font-accent text-4xl md:text-5xl mb-6" data-animation="fadeInUp">Tanda Kasih</h2>
+<p data-component="description" id="uid-4a028e6f" data-animation="fadeInUp">Terima kasih telah mengisi kebahagiaan dan kegembiraan di pernikahan kami dengan kehadiran dan hadiah indah Anda.</p>
+
+<div class="flex flex-col items-center mt-4">
+
+<div class="space-y-4">
+
+<div class="flex items-center">
+<div data-component="image" class="h-16 w-24 overflow-hidden rounded-lg bg-white" id="uid-dced9da6" data-animation="none">
+<img src="assets/images/yOXbQgrh7fbsyYE9qziYVNOzSublplKac72GxkB8.png" class="h-full w-full object-contain" alt="logo-bri-1688609239.jpg">
+</div>
+<div class="text-left pl-4">
+<div class="flex items-center justify-between gap-3"><h3 data-component="text" class="font-bold" id="uid-fb4b848a" data-animation="none">6870693280</h3><button type="button" onclick="copyToClipboard('6870693280', this)" class="inline-flex items-center gap-1.5 px-3 py-1 text-xs font-semibold rounded-full bg-[var(--button-bg)] text-[var(--button-color)] hover:bg-[var(--button-hover-bg)] transition shadow-sm cursor-pointer"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg> Salin</button></div>
+<p data-component="text" id="uid-30c3422b" data-animation="none">A/N Mempelai Pria</p>
+</div>
+</div>
+
+<div class="flex items-center">
+<div data-component="image" class="h-16 w-24 overflow-hidden rounded-lg bg-white" id="uid-7825d3ea" data-animation="none">
+<img src="assets/images/yOXbQgrh7fbsyYE9qziYVNOzSublplKac72GxkB8.png" class="h-full w-full object-contain" alt="logo-bri-1688609239.jpg">
+</div>
+<div class="text-left pl-4">
+<div class="flex items-center justify-between gap-3"><h3 data-component="text" class="font-bold" data-animation="none" id="uid-044f90c3">3800971038</h3><button type="button" onclick="copyToClipboard('3800971038', this)" class="inline-flex items-center gap-1.5 px-3 py-1 text-xs font-semibold rounded-full bg-[var(--button-bg)] text-[var(--button-color)] hover:bg-[var(--button-hover-bg)] transition shadow-sm cursor-pointer"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg> Salin</button></div>
+<p data-component="text" data-animation="none" id="uid-3d04f9c2">A/N Mempelai Wanita</p>
+</div>
+</div>
+
+</div>
+
+</div>
+
+<div data-component="link" id="uid-e338a193" data-animation="zoomIn" class="mt-10">
+<a class="btn btn-primary inline-flex h-10 px-20 rounded-full" href="https://wa.me/62812xxxxxx" target="_blank" rel="noreferrer noopener">Confirm Transfer</a>
+</div>
+
+    </div>
+</div>
+</section>
+      </div>
+    </div>
+    
+    <div id="page-6" class="w-full">
+      <div class="relative overflow-hidden">
+        <section id="uid-dd97adfc">
+
+<div class="relative px-4 lg:px-6 py-20">
+  <div class="max-w-xl mx-auto text-center text-accent mb-8">
+      <h2 id="uid-1019526e" data-component="text" class="font-accent text-4xl md:text-5xl mb-2" data-animation="fadeInUp">Our Moment</h2>
+      <p data-component="description" class="text-base mt-2" id="uid-ed4b7318" data-animation="fadeInUp">I would cross a thousand lifetimes to find you, and I'll gladly spend another thousand loving you.</p>
+    </div>
+  <div class="grid gap-2 max-w-xl mx-auto">
+
+  <div class="size-full overflow-hidden rounded-lg" data-component="video" data-animation="none" id="uid-2ea15f3c">
+  <video class="w-full h-full object-cover" poster="assets/images/kAdQt5D1LDloYeZT9U8cEBllxb16Cl5X6pVHwhgG.jpg" autoplay="" loop="" muted="" playsinline="">
+          <source src="assets/videos/ZEG2Q0JS2xq0zd70hDh5TKety2er71ykFRPXqH9v.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+        </source>
+      </video>
+  </div>
+    
+    <div class="grid gap-2" style="grid-template-columns:repeat(3, 1fr);">
+      <div id="uid-32636b60" class="overflow-hidden rounded-lg" data-component="image" style="grid-column:span 1 / span 1;height:200px;" data-animation="zoomIn">
+        <img src="assets/images/tZLQJro30lAOtEEyEHUUqmCDK2T7IGDfCcDMsODq.jpg" alt="Foto 2" class="w-full h-full object-cover object-center">
+      </div>
+      <div id="uid-7c8f0bac" class="overflow-hidden rounded-lg" data-component="image" style="grid-column:span 2 / span 2;height:200px;" data-animation="zoomIn">
+        <img src="assets/images/o5qgZYU7blSVITJrrUujR1nfb03GvlMQQG84SgMa.jpg" alt="Foto 3" class="w-full h-full object-cover object-center">
+      </div>
+    </div>
+
+    
+    <div class="grid gap-2" style="grid-template-columns:repeat(3, 1fr);">
+      <div id="uid-cdecbe14" class="overflow-hidden rounded-lg" data-component="image" style="grid-column:span 2 / span 2;height:200px;" data-animation="zoomIn">
+        <img src="assets/images/zywT5TNSILCHQw619hgR8JOpM0O1ePNHI1G1l5GZ.jpg" alt="Foto 4" class="w-full h-full object-cover object-center">
+      </div>
+      <div id="uid-5836d970" class="overflow-hidden rounded-lg" data-component="image" style="grid-column:span 1 / span 1;height:200px;" data-animation="zoomIn">
+        <img src="assets/images/S2OE4UsXVYduhSoV0Ok09Fz72wuPS8CwqAjtmGKE.jpg" alt="Foto 5" class="w-full h-full object-cover object-center">
+      </div>
+    </div>
+
+  </div>
+</div>
+  
+</section>
+
+      </div>
+    </div>
+    
+    <div id="page-7" class="w-full">
+      <div class="relative overflow-hidden">
+        <section id="uid-62d41787">
+
+<div class="absolute inset-0">
+    <div class="size-full" data-component="image" data-animation="none" id="uid-42539e64">
+<img src="assets/images/1O0bLbE65AxCAi7eKhfXiRno24MJfTMcsNQZIhua.jpg" class="size-full object-cover object-center" alt="YVqFtGeyuPANTnFICZg3l9mes0sJ8c2n7IO5FVVC.jpg">
+</div>
+  
+</div>
+  
+<div class="relative px-4 lg:px-6 py-20" style="background-color:rgba(255,255,255,0.8);">
+  <div class="max-w-xl mx-auto text-center mb-8">
+    <div class="h-40 w-40 mx-auto mb-14" data-component="image" data-animation="zoomIn" id="uid-57415a72">
+<img src="assets/images/sLjztB6Latgr71RKUi33DV7JfGGhnjKRg5BeuLPi.png" class="size-full object-cover object-center" alt="YVqFtGeyuPANTnFICZg3l9mes0sJ8c2n7IO5FVVC.jpg">
+</div>
+    
+      <h2 id="uid-d3245291" data-component="text" class="font-accent text-4xl md:text-5xl mb-2" data-animation="fadeInUp">Love Story</h2>
+    </div>
+
+<div class="flex flex-wrap justify-center gap-8">
+
+<div data-animation="fadeInUp" class="p-6 w-full max-w-md border border-2 rounded-2xl shadow-xl" style="border-color:var(--border-color);backdrop-filter:blur(4px);">
+<h2 data-component="header" class="font-bold" id="uid-b3c116b0" data-animation="fadeInLeft">Pertemuan</h2>
+<p data-component="description" class="text-base mt-2" id="uid-80b44a88" data-animation="fadeInLeft">Pertemuan pertama kami terjadi di akhir tahun 2024 saat saya menemani keluarga dalam perjalanan ibadah umrah di Arab Saudi. Momen tersebut membawa kami yang telah tertulis di Lauhul Mahfudz dimana saling mengenal lebih dekat dan membuka jalan  hubungan yang lebih serius.</p>
+</div>
+
+<div data-animation="fadeInUp" class="p-6 w-full max-w-md border border-2 rounded-2xl shadow-xl" style="border-color:var(--border-color);backdrop-filter:blur(4px);">
+<h2 data-component="header" class="font-bold" id="uid-2f567309" data-animation="fadeInLeft">Pendekatan</h2>
+<p data-component="description" class="text-base mt-2" data-animation="fadeInLeft" id="uid-0ea02f0b">Katanya cinta dapat tumbuh dengan kebersamaan , seiring berjalannya waktu kami kembali bertemu di kota Mekkah , memang tidak ada kata pacaran diantara kami tapi alam seakan terus berkonspirasi untuk menyatukan kami berdua.</p>
+</div>
+
+<div data-animation="fadeInUp" class="p-6 w-full max-w-md border border-2 rounded-2xl shadow-xl" style="border-color:var(--border-color);backdrop-filter:blur(4px);">
+<h2 data-component="header" class="font-bold" id="uid-613c48b2" data-animation="fadeInLeft">Lamaran</h2>
+<p data-component="description" class="text-base mt-2" data-animation="fadeInLeft" id="uid-446d9216">Pada awal April 2025, dia dengan penuh keberanian menyampaikan niatnya untuk melamar saya kepada orang tua. Langkah ini menjadi awal dari perjalanan kami menuju kehidupan berumah tangga yang insyaallah Samawa bersama menuju surga Allah S.W.T.</p>
+</div>
+
+<div data-animation="fadeInUp" class="p-6 w-full max-w-md border border-2 rounded-2xl shadow-xl" style="border-color:var(--border-color);backdrop-filter:blur(4px);">
+<h2 data-component="header" class="font-bold" data-animation="fadeInLeft" id="uid-79b8ec79">Menikah</h2>
+<p data-component="description" class="text-base mt-2" data-animation="fadeInLeft" id="uid-df8ddfa9">Dengan keridhaan Allah SWT, setelah melewati perjalanan selama enam bulan yang penuh dengan doa dan persiapan, kami memutuskan untuk melangsungkan pernikahan pada akhir Juni 2025. Semoga kehidupan yang kami bangun bersama senantiasa diberkahi dan dilimpahi kebahagiaan.</p>
+</div>
+
+</div> 
+</div>
+
+  </section>
+
+
+      </div>
+    </div>
+    
+    <div id="page-8" class="w-full">
+      <div class="relative overflow-hidden">
+        <section class="w-full py-20 px-4">
+  <div class="max-w-xl mx-auto text-center">
+
+    <div class="text-accent">
+      <h2 data-component="header" class="font-header text-5xl md:text-7xl font-medium" data-animation="fadeInUp" id="uid-0f1db7e3">RSVP</h2>
+<p data-component="description" class="font-medium mb-8" data-animation="fadeInUp" id="uid-a36b763f">
+        With our coordinators by January 5
+      </p>
+    </div>
+
+<div class="relative p-4 rounded-2xl overflow-hidden">
+  <div class="absolute inset-0">
+    <div class="size-full" data-component="image" data-animation="none" id="uid-99e7b606">
+<img src="assets/images/1O0bLbE65AxCAi7eKhfXiRno24MJfTMcsNQZIhua.jpg" class="size-full object-cover object-center" alt="YVqFtGeyuPANTnFICZg3l9mes0sJ8c2n7IO5FVVC.jpg">
+</div>
+  </div>
+    
+    <div id="rsvp-form" class="p-4 rounded-2xl relative" style="background-color:rgba(255, 255, 255, .8);border:2px solid var(--border-color);"></div>
+  
+</div>
+  </div>
+</section>
+      </div>
+    </div>
+    
+    <div id="page-9" class="w-full">
+      <div class="relative overflow-hidden">
+        <section id="uid-365d4b1c">
+
+  <div class="absolute inset-0">
+    <div class="size-full" data-component="image" data-animation="none" id="uid-94662cb3">
+<img src="assets/images/1O0bLbE65AxCAi7eKhfXiRno24MJfTMcsNQZIhua.jpg" class="size-full object-cover object-center" alt="YVqFtGeyuPANTnFICZg3l9mes0sJ8c2n7IO5FVVC.jpg">
+</div>
+  
+</div>
+
+  <div class="relative px-4 lg:px-6 py-20" style="background-color:rgba(255,255,255,0.8);">
+  
+  <div class="max-w-4xl mx-auto sm:px-4 text-center space-y-8">
+    <div>
+      <h2 id="uid-2225dcd7" data-component="text" class="font-accent text-4xl md:text-5xl mb-2" data-animation="fadeInUp">Wishes</h2>
+    </div>
+
+    <div id="comment-form" class="p-4 max-w-xl mx-auto border border-2 rounded-2xl" style="border-color:var(--border-color);backdrop-filter:blur(4px);transform:translate(0px, 0px);"></div>
+    </div>
+    
+  </div>
+</section>
+      </div>
+    </div>
+    
+    <div id="page-10" class="w-full">
+      <div class="relative overflow-hidden">
+        <section id="uid-a3d5b7f4" class="px-6 py-20" style="height:700px;background-color:#000;">
+
+<div class="absolute inset-0">
+    <div id="uid-b52be8ae" data-component="image" class="size-full" data-animation="undefined"><img src="assets/images/S2OE4UsXVYduhSoV0Ok09Fz72wuPS8CwqAjtmGKE.jpg" class="object-cover object-center size-full opacity-70" alt="3jPngeBChSREnsqmYDMCXkzWXEC64V7EUltNY8aB.jpg"></div>
+  </div>
+
+<div class="size-full text-center mb-8 max-w-xl mx-auto relative text-accent flex flex-col justify-center">
+
+<div class="text-center mb-8 max-w-xl mx-auto">
+      <h2 id="uid-6d30b01f" data-component="text" class="font-accent text-5xl md:text-7xl font-medium" data-animation="fadeInUp">Thank You</h2>
+      <p data-component="description" class="text-base mt-2" id="uid-65fdb339" data-animation="fadeInUp">Thank you for your presence, blessings, and affection. May Allah SWT always bestow grace, peace, and blessings upon us all.
+</p>
+    </div>
+  
+<div class="space-y-4">
+
+<div class="text-base p-4" id="uid-7eaf02ae">
+<div data-component="text" class="font-header font-bold text-3xl" id="uid-92baac33" data-animation="none">    The Honorable
+</div>
+</div>
+
+<div class="text-base p-4 rounded-2xl" id="uid-78dedd59" style="border:1px solid var(--border-color);">
+<div data-component="text" class="font-header font-bold text-xl" id="uid-7082e0ec" data-animation="none">Nama Bapak &amp; Nama Ibu</div>
+<div data-component="text" id="uid-fd2aa167" data-animation="none">Keluarga Mempelai Pria</div>
+</div>
+
+<div class="text-base p-4 rounded-2xl" id="uid-43ba3296" style="border:1px solid var(--border-color);">
+<div data-component="text" class="font-header font-bold text-xl" id="uid-b627b492" data-animation="none">Nama Bapak &amp; Nama Ibu</div>
+<div data-component="text" id="uid-0b8888d1" data-animation="none">Keluarga Mempelai Wanita</div>
+</div>
+
+</div>
+</div>
+
+</section>
+      </div>
+    </div>
+    
+
+    <!-- Crafted By Footer & Audio Credits -->
+    <div class="py-12 px-6 text-center text-sm text-[var(--accent-color)] space-y-3 bg-[var(--background-color)] border-t border-white/10">
+      <div class="flex items-center justify-center gap-2">
+        <span class="text-xs uppercase tracking-wider opacity-80">Crafted By</span>
+        <svg width="81" height="24" viewBox="0 0 81 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="inline-block text-[var(--button-bg)]">
+          <path d="M15.3882 22.845L5.79435 2.78549C4.92201 1.04127 2.6896 0.52806 1.43359 0.168945H6.66667C8.02005 0.168945 9.5655 0.695112 10.1551 1.91315L15.3882 14.1236L20.6213 1.91315C21.2104 0.695112 22.7563 0.168945 24.1097 0.168945H29.2865C28.03 0.52806 25.8539 1.04127 24.9816 2.78549L15.3882 22.845Z" fill="currentColor"/>
+          <path d="M29.2557 17.1195L29.0981 17.7919C28.4535 18.0514 27.9391 18.23 27.5536 18.3278C27.1683 18.4328 26.8391 18.4854 26.5661 18.4854C26.0057 18.4854 25.5852 18.3419 25.3051 18.0548C25.0251 17.7604 24.8851 17.4 24.8851 16.9724C24.8851 16.8114 24.8988 16.6433 24.9269 16.4682C24.9549 16.2931 25.0006 16.0723 25.0637 15.8064L26.1772 11.341C26.2334 11.096 26.2857 10.8331 26.3348 10.5531C26.391 10.2731 26.4186 10.0348 26.4186 9.83859C26.4186 9.44666 26.3524 9.18726 26.2194 9.06129C26.0934 8.92787 25.8305 8.86159 25.4312 8.86159C25.2771 8.86159 25.0703 8.88617 24.8114 8.93533C24.5594 8.98405 24.3668 9.02618 24.2334 9.06129L24.3913 8.3889C24.9374 8.14355 25.4276 7.96141 25.8622 7.84246C26.2962 7.72352 26.6395 7.66383 26.8918 7.66383C27.4659 7.66383 27.8829 7.80034 28.1418 8.07377C28.4012 8.34676 28.5307 8.71456 28.5307 9.17673C28.5307 9.30269 28.5166 9.4743 28.4885 9.69156C28.4608 9.90882 28.4188 10.1256 28.3626 10.3429L27.2386 14.8083C27.1683 15.0812 27.1052 15.3512 27.0494 15.6172C27.0002 15.8761 26.9757 16.0898 26.9757 16.258C26.9757 16.6574 27.0634 16.9304 27.2386 17.0774C27.4207 17.2244 27.7112 17.2981 28.1106 17.2981C28.2436 17.2981 28.4328 17.2806 28.6777 17.2455C28.93 17.2108 29.1227 17.1686 29.2557 17.1195ZM30.0019 3.69221C30.0019 4.09161 29.8719 4.44185 29.6129 4.74294C29.3536 5.03744 29.0314 5.18447 28.6461 5.18447C28.2893 5.18447 27.9807 5.04402 27.7217 4.764C27.4624 4.47696 27.3329 4.15129 27.3329 3.78701C27.3329 3.40165 27.4624 3.06546 27.7217 2.77842C27.9807 2.49137 28.2893 2.34741 28.6461 2.34741C29.0455 2.34741 29.3712 2.48435 29.6236 2.75734C29.8755 3.02332 30.0019 3.33537 30.0019 3.69221ZM33.0589 18.4854C32.3935 18.4854 31.9067 18.3524 31.5986 18.0859C31.2905 17.813 31.1364 17.4242 31.1364 16.9198C31.1364 16.7588 31.1469 16.6083 31.1681 16.4682C31.1887 16.3212 31.2168 16.1566 31.2519 15.9745L32.8806 8.95595H31.01L31.2308 8.00003H33.1431L33.8787 4.92157H35.7694L35.0554 8.00003H37.9864L37.7656 8.95595H34.8557L33.5109 14.7451C33.4477 15.0115 33.3951 15.2705 33.3533 15.5229C33.3112 15.7677 33.2901 15.9779 33.2901 16.1531C33.2901 16.5384 33.3849 16.8219 33.5737 17.0041C33.7699 17.1793 34.1201 17.2666 34.6244 17.2666C34.8065 17.2666 35.0624 17.2455 35.3916 17.2038C35.7208 17.1547 35.9762 17.095 36.1584 17.0252L35.9797 17.7919C35.4894 17.9811 35.0273 18.1421 34.5928 18.2752C34.1587 18.4152 33.6473 18.4854 33.0589 18.4854" fill="currentColor"/>
+        </svg>
+      </div>
+      <div class="text-xs opacity-90">Backsound : ANDMESH - ANUGERAH TERINDAH</div>
+    </div>
+  </div>
+
+  <!-- ==================== FLOATING MUSIC BUTTON & AUDIO ==================== -->
+  <button id="btnMusic" type="button" aria-label="Toggle Background Music"
+    class="fixed bottom-4 left-4 z-50 transition-transform duration-300 ease-in-out cursor-pointer hover:scale-105" title="ANDMESH - ANUGERAH TERINDAH">
+    <div class="vinyl size-12 bg-cover bg-center rounded-full shadow-xl border-2 border-white/20" style="background-image: url('assets/images/vinyl.png');">
+      <span class="sr-only">Music</span>
+    </div>
+  </button>
+  <audio id="bgMusic" loop preload="auto" src="assets/audio/qAm1sZIVHadKSpnbsEgK2dTZdzyOFDrrWKMidUJZ.mp3"></audio>
+
+  <!-- ==================== JAVASCRIPT LIBRARIES & CLIENT LOGIC ==================== -->
+  <script src="assets/js/gsap.min.js"></script>
+  <script src="assets/js/ScrollTrigger.min.js"></script>
+  <script src="assets/js/TextPlugin.min.js"></script>
+  <script src="assets/js/main.js"></script>
+
+</body>
+</html>
